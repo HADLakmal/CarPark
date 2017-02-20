@@ -1,4 +1,5 @@
-@extends('masterPage')
+
+@extends('pages.home')
 
 @section('header')
     <nav>
@@ -27,7 +28,6 @@
         </form>
 
 
-        {{ $error }}
     </div>
 
 @stop

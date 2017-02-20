@@ -15,3 +15,5 @@ Route::get('/' ,[
     'as'=>'home',
     'uses'=>'pageController@home'
 ]);
+Route::get('/login',['uses'=>'pageController@login','as'=>'login']);
+
