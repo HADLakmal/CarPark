@@ -1,0 +1,223 @@
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+
+
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+body	{
+    margin: 0;
+    background-image: url(https://wings.samco.aero/Wings/img/background.jpg);
+    background-size: cover;
+    font-family: 'Raleway', sans-serif;
+}
+
+/*===================================== Header style ======================================*/
+
+header {
+    background-color: rgba(105, 107, 106, 0.55);
+    overflow: hidden;
+    font-family: "Arial Black";
+    font-size: xx-large;
+}
+
+.welcome {
+    list-style: none;
+    padding: 20px 0;
+    float:left;
+    font-family:  'Raleway', sans-serif;
+}
+
+header nav {
+    padding: 20px 0;
+    float: right;
+
+}
+
+header nav ul	{
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+}
+header nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: arial;
+    padding:20px 2px ;
+    opacity: 1;
+    font-size: medium;
+}
+header  h1{
+
+
+}
+
+header nav ul li a:hover {
+    background-color: rgba(64, 64, 84, 0.53);
+
+}
+
+h2	{
+    font-family: arial ;
+    font-size: 20px;
+}
+
+/*----------------------------- Form style --------------------------------------------*/
+
+.form_wrapper {
+    width: 500px;
+    margin: 50px auto;
+}
+
+form	{
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-color:rgb(166, 204, 184) ;
+    background-color: rgba(166, 204, 190, 0.29);
+    box-shadow: 0px 1px 10px -1px rgba(23, 23, 21, 0.38);
+
+}
+
+input {
+    width: 	80%;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 2%;
+    font-size: 	15px;
+    margin-bottom: 10px;
+    background-color: rgba(155, 146, 234, 0.3);
+
+
+
+}
+
+select {
+    width: 	80%;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 2%;
+    font-size: 	15px;
+    margin-bottom: 10px;
+    background-color: rgba(155, 146, 234, 0.3);
+
+
+
+}
+input[type="radio"]{
+    width: 10%;
+    height: 15px;
+    padding: 0;
+}
+.Fixed {
+    color: #444444;
+    font-size: 15px;
+    width: 100px;
+    height: 30px;
+    padding-left: 15px;
+
+    outline:none;
+
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding:0;
+    margin-top: 10px;
+    background-color:  rgba(96, 98, 113, 1);
+}
+
+input[type="checkbox"]{
+    width: 10%;
+    height: 15px;
+    padding: 0;
+}
+
+form a {
+    margin-left: 30%;
+    color: #a5092e;
+
+}
+
+.text_wrapper {
+    width: 400px;
+    margin: 100px auto;
+}
+/*-----------------------------------  Footer style ------------------------------------*/
+
+
+
+footer	{
+    width:100%;
+    background-color: rgba(43, 129, 179, 0.49);
+    overflow: hidden;
+    margin-top: 190px;
+    position: relative;
+    /*bottom: 0;*/
+}
+
+footer nav {
+    float: left;
+    padding:40px 0;
+    margin:0;
+
+}
+
+footer nav ul{
+    margin:0;
+}
+
+footer nav ul li{
+    display: inline-block;
+    margin:0 10px;
+}
+
+footer nav ul li a{
+    padding: 0;
+    text-decoration: none;
+    font-size: 	15px;
+    font-family: arial;
+    color: 	black;
+    font-weight: 600;
+
+}

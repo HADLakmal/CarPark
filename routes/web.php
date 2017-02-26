@@ -13,7 +13,7 @@
 
 Route::get('/' ,[
     'as'=>'home',
-    'uses'=>'pageController@home'
+    'uses'=>'pageController@login'
 ]);
 Route::get('/login',['uses'=>'pageController@login','as'=>'login']);
 

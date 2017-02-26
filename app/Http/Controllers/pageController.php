@@ -12,6 +12,7 @@ class pageController extends Controller
         return view('pages.home');
     }
     public function login(){
-        return view('pages.login');
+        $error = "";
+        return view('pages.login',compact($error));
     }
 }
