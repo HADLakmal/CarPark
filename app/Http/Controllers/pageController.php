@@ -13,6 +13,10 @@ class pageController extends Controller
     }
     public function login(){
         $error = "";
-        return view('pages.login',compact($error));
+        return view('pages.login',compact('error'));
+    }
+
+    public function user(){
+        return view('pages.user')->with(['massage'=>'']);
     }
 }

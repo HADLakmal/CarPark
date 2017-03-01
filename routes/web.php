@@ -15,5 +15,8 @@ Route::get('/' ,[
     'as'=>'home',
     'uses'=>'pageController@login'
 ]);
-Route::get('/login',['uses'=>'pageController@login','as'=>'login']);
+
+Route::post('/userLogin','DBController@userLogin');
+
+Route::get('/user',['as' => 'Home', 'uses'=> 'PageController@user']);
 
