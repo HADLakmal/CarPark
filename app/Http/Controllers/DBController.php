@@ -27,7 +27,8 @@ class DBController extends Controller
 
         }
         else {
-            return redirect()->route('user');
+            session()->put(['user'=>$request['username'],'customerId'=>$user[0]->ID]);
+            return redirect()->route('Home');
         }
     }
 
