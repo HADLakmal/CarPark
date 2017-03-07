@@ -19,4 +19,8 @@ class pageController extends Controller
     public function user(){
         return view('pages.user')->with(['massage'=>'']);
     }
+
+    public function map(){
+        return view('pages.direction');
+    }
 }

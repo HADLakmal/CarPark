@@ -183,6 +183,24 @@ form a {
     width: 400px;
     margin: 100px auto;
 }
+/*-----------------------------------  Home style  -------------------------------------*/
+
+div.center {
+
+    width: 40%;
+    padding: 20px 20px;
+    margin: 0 auto;
+    box-shadow: rgb(32, 32, 32) 5px 5px 10px inset;
+    border-radius: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+
+}
+
+
 /*-----------------------------------  Footer style ------------------------------------*/
 
 

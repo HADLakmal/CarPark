@@ -20,3 +20,5 @@ Route::post('/userLogin','DBController@userLogin');
 
 Route::get('/user',['as' => 'Home', 'uses'=> 'PageController@user']);
 
+Route::get('/map','PageController@map');
+
