@@ -20,14 +20,15 @@
 
 
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'CuLocation')">Current Location</button>
-        <button class="tablinks" onclick="openCity(event, 'Distance')">Distance</button>
-        <button class="tablinks" onclick="openCity(event, 'CarPark')">Nearest Car Parks</button>
+        <button class="tablinks" onclick="openTab(event, 'CuLocation')">Current Location</button>
+        <button class="tablinks" onclick="openTab(event, 'Distance')">Distance</button>
+        <button class="tablinks" onclick="openTab(event, 'CarPark')">Nearest Car Parks</button>
     </div>
 
     <div id="CuLocation" class="tabcontent">
         <h3>Current Location</h3>
-        <p>London is the capital city of England.</p>
+        <div id="geoLocation"></div>
+        <button onclick="getLocation()" id="getLocation"> GeoLocation</button>
     </div>
 
     <div id="Distance" class="tabcontent">
@@ -45,7 +46,7 @@
     </div>
 
     <script>
-        function openCity(evt, ID) {
+        function openTab(evt, ID) {
             var i, tabcontent, tablinks;
 
             tabcontent = document.getElementsByClassName("tabcontent");
@@ -71,14 +72,12 @@
             }
         }
         function showPosition(position) {
+            console.log(position.coords.latitude)
             x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
         }
 
-        $(document).on('click', '#getGeolocation', function(){
-            console.log("clicked");
-            getLocation();
-        });
+
 
         //map page
         var y = document.getElementById("map-canvas");
