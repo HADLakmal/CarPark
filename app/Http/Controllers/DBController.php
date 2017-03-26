@@ -32,4 +32,28 @@ class DBController extends Controller
         }
     }
 
+    public function signIn(Request $request)
+    {
+        $firstName= $request['inputFirstName'];
+        $lastName = $request['inputLastName'];
+        $city=$request['inputTown'];
+        $nic=$request['inputNic'];
+        $Mobile=$request['inputMobile'];
+        $email=$request['inputEmail'];
+        $Password=$request['inputPassword'];
+
+
+        DB::insert('insert into user (email,firstname,lastname, nic ,number, city) values (?, ?, ?, ?, ? ,?)',[$email,$firstName,$lastName,$nic,$Mobile,$city]);
+
+        DB::insert('insert into UserLogin (username, password ) values (?, ?)',[$email,$Password]);
+
+        $name = DB::select('select firstname from user,userLogin where userLogin.userName = user.email and userLogin.userName = ?',[$email]);
+
+        session()->put(['user'=>$email,'userName'=>$name[0]->userName]);
+
+
+        return redirect()->route('pages.user');
+
+    }
+
 }

@@ -7,7 +7,7 @@
 
         <ul>
 
-            <li><a href="login">Login</a></li>
+            <li><a href="signIn">Sign IN</a></li>
             <li><a href="register">Register</a></li>
             <li><a href="about">About us</a></li>
             <li><a href="">Contact us</a></li>

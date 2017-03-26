@@ -20,15 +20,18 @@
 
 
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'CuLocation')">Current Location</button>
+        <button class="tablinks" onclick="openTab(event, 'CuLocation'),getLocation(),getMap()">Current Location</button>
         <button class="tablinks" onclick="openTab(event, 'Distance')">Distance</button>
         <button class="tablinks" onclick="openTab(event, 'CarPark')">Nearest Car Parks</button>
     </div>
 
     <div id="CuLocation" class="tabcontent">
         <h3>Current Location</h3>
-        <div id="geoLocation"></div>
-        <button onclick="getLocation()" id="getLocation"> GeoLocation</button>
+        <div class="form-group">
+            <div id="geoLocation"></div>
+            <div id="map-canvas" style="width: 80%; height: 100%"></div>
+        </div>
+
     </div>
 
     <div id="Distance" class="tabcontent">
@@ -72,7 +75,6 @@
             }
         }
         function showPosition(position) {
-            console.log(position.coords.latitude)
             x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
         }
@@ -104,13 +106,14 @@
 
         var map;
         function getMap() {
-            console.log("getMap");
+
             var mapOptions = {
                 zoom: 12,
                 center: new google.maps.LatLng(mapLatitude, mapLongitude)
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
+            console.log("Done");
 
             var marker = new google.maps.Marker({
                 position: myLatlng,
@@ -119,9 +122,6 @@
             });
         }
 
-        $( document ).on( "pageshow", "#mapPage", function( event ) {
-            getMapLocation();
-        });
 
         //directionsPage
         var directionsDisplay;

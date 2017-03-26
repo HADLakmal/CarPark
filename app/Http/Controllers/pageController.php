@@ -23,4 +23,12 @@ class pageController extends Controller
     public function map(){
         return view('pages.direction');
     }
+
+    public function sign(){
+        return view('pages.signIn');
+    }
+
+    public function signRegister(){
+        return view('pages.register');
+    }
 }
