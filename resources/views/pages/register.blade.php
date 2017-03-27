@@ -18,7 +18,9 @@
 
 @section('content')
 
-    <div style="margin-top: 5% " action=routing method= 'post' class="center" >
+
+    <form action="submitregister" method="post">
+    <div style="margin-top: 3% " action=routing method= 'post' class="center" >
         <h2 style="font-family: 'Raleway', sans-serif;margin-bottom: 5% ">user Register</h2>
         <div>Company name</div>
         <input type="text" name="comapanyname" placeholder="Enter Your company name" required="companyname is required" style="margin-left:40px;margin-bottom: 10px">
@@ -38,4 +40,5 @@
 
         <input type="submit" name="submit" value="Register request" style="width: 40%; margin-left: 30%; background: red">
     </div>
+    </form>
 @stop

@@ -17,19 +17,45 @@ class DBController extends Controller
 
     public static function userLogin(Request $request){
 
-        $user =  DB::select('select * from  userlogin where username = ? and password = ? ',[$request['username'],$request['password']]);
-        if (empty($user)){
 
-            $error = 'Invalide username or password!!';
+        try{
+            $user =  DB::select('select * from  userlogin where username = ? and password = ? ',[$request['username'],$request['password']]);
 
+            $register = DB::select('select * from  registerlogin where username = ? and password = ? ',[$request['username'],$request['password']]);
 
-            return  view('pages.login',compact('error'));
+            $register = DB::select('select * from  registerlogin where username = ? and password = ? ',[$request['username'],$request['password']]);
 
+            if (!empty($user)){
+
+                session()->put(['user'=>$request['username'],'userId'=>$user[0]->ID]);
+                return redirect()->route('Home');
+
+            }
+
+            if (!empty($register)){
+
+                if ($request['username']=='Admin'){
+                    session()->put(['user'=>$request['username'],'requestId'=>$register[0]->id]);
+                    return redirect()->route('Admin');
+                }
+                else{
+                    session()->put(['user'=>$request['username'],'requestId'=>$register[0]->id]);
+                    return redirect()->route('Home');
+                }
+
+            }
+
+            else {
+
+                $error = 'Invalide username or password!!';
+                return  view('pages.login',compact('error'));
+            }
         }
-        else {
-            session()->put(['user'=>$request['username'],'customerId'=>$user[0]->ID]);
-            return redirect()->route('Home');
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+            dd($ex->getMessage());
         }
+
     }
 
     public function signIn(Request $request)
@@ -43,16 +69,48 @@ class DBController extends Controller
         $Password=$request['inputPassword'];
 
 
-        DB::insert('insert into user (email,firstname,lastname, nic ,number, city) values (?, ?, ?, ?, ? ,?)',[$email,$firstName,$lastName,$nic,$Mobile,$city]);
-
-        DB::insert('insert into UserLogin (username, password ) values (?, ?)',[$email,$Password]);
-
-        $name = DB::select('select firstname from user,userLogin where userLogin.userName = user.email and userLogin.userName = ?',[$email]);
-
-        session()->put(['user'=>$email,'userName'=>$name[0]->userName]);
 
 
-        return redirect()->route('pages.user');
+        try{
+            DB::insert('insert into user (email,firstname,lastname, nic ,number, city) values (?, ?, ?, ?, ? ,?)',[$email,$firstName,$lastName,$nic,$Mobile,$city]);
+
+            DB::insert('insert into UserLogin (username, password ) values (?, ?)',[$email,$Password]);
+
+            $name = DB::select('select firstname from user,userLogin where userLogin.userName = user.email and userLogin.userName = ?',[$email]);
+
+            session()->put(['user'=>$email,'userName'=>$name[0]->userName]);
+
+
+            return redirect()->route('pages.user');
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+            dd($ex->getMessage());
+        }
+
+    }
+
+    public function register(Request $request)
+    {
+        $companyname= $request['companyname'];
+        $loaction  = $request['location'];
+        $address=$request['address'];
+        $conumber=$request['conumber'];
+        $Mobile=$request['mobnumber'];
+
+
+        try{
+            DB::insert('insert into tempregister (companyname,longitude,latitude, address ,conumber, mobnumber) values (?, ?, ?, ?, ? ,?)',[$companyname,$loaction,$loaction,$address,$conumber,$Mobile]);
+
+            return redirect()->route('pages.login');
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+            dd($ex->getMessage());
+        }
+
+
+
 
     }
 

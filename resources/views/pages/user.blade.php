@@ -20,7 +20,7 @@
 
 
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'CuLocation'),getLocation(),getMap()">Current Location</button>
+        <button class="tablinks" onclick="openTab(event, 'CuLocation'),getLocation(),initMap()">Current Location</button>
         <button class="tablinks" onclick="openTab(event, 'Distance')">Distance</button>
         <button class="tablinks" onclick="openTab(event, 'CarPark')">Nearest Car Parks</button>
     </div>
@@ -29,8 +29,9 @@
         <h3>Current Location</h3>
         <div class="form-group">
             <div id="geoLocation"></div>
-            <div id="map-canvas" style="width: 80%; height: 100%"></div>
         </div>
+        <button href="current" style="width: 20%; color: #1f648b">Click</button>
+
 
     </div>
 
@@ -47,6 +48,7 @@
         <h3>Nearest Parking List</h3>
         <p>Tokyo is the capital of Japan.</p>
     </div>
+
 
     <script>
         function openTab(evt, ID) {
@@ -81,6 +83,19 @@
 
 
 
+        //my map
+
+        function initMap() {
+            var uluru = {lat: 6.7970079, lng: 79.9000628};
+            var map = new google.maps.Map(document.getElementById('maps'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
         //map page
         var y = document.getElementById("map-canvas");
         var mapLatitude;
@@ -181,8 +196,17 @@
         });
 
     </script>
-    <!---direction block ---!>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDyfNoVy0qigSbK-Cp2PifbE_vyOyDGY&callback=initMap">
+    </script>
 
+@stop
+@section('map')
+    <button onclick="initMap()">press</button>
+    <div id="maps"></div>
 
 
 @stop
+
+
+    <!---direction block ---!>

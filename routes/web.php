@@ -18,13 +18,21 @@ Route::get('/' ,[
 
 Route::post('/userLogin','DBController@userLogin');
 
+//user loging
 Route::get('/user',['as' => 'Home', 'uses'=> 'pageController@user']);
 
+Route::get('/admin',['as' => 'Admin', 'uses'=> 'pageController@admin']);
+
+
+//referencing
 Route::get('/map','PageController@map');
+
+Route::get('/current','PageController@current');
 
 Route::get('/signIn','pageController@sign');
 
 Route::get('/register','pageController@signRegister');
 
 Route::post('/submitUser','DBController@signIn');
+
 
