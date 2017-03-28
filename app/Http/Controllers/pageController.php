@@ -28,10 +28,6 @@ class pageController extends Controller
         return view('pages.map');
     }
 
-    public function current(){
-        return view('pages.current');
-    }
-
     public function sign(){
         return view('pages.signIn');
     }

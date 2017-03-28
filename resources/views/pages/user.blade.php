@@ -1,6 +1,8 @@
 @extends('pages.home')
 
 @section('header')
+
+
     <li class="welcome">Welcome {{ session()->get('user') }} </li>
 
     <nav>
@@ -19,8 +21,20 @@
 @section('content')
 
 
+    <style>
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+        #direction-canvas{
+            height: 400px;
+            width: 100%;
+
+        }
+    </style>
+
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'CuLocation'),getLocation(),initMap()">Current Location</button>
+        <button class="tablinks" onclick="openTab(event, 'CuLocation'),getLocation(),getMapLocation()">Current Location</button>
         <button class="tablinks" onclick="openTab(event, 'Distance')">Distance</button>
         <button class="tablinks" onclick="openTab(event, 'CarPark')">Nearest Car Parks</button>
     </div>
@@ -29,19 +43,22 @@
         <h3>Current Location</h3>
         <div class="form-group">
             <div id="geoLocation"></div>
+            <div id="map-canvas"></div>
         </div>
-        <button href="current" style="width: 20%; color: #1f648b">Click</button>
+
 
 
     </div>
 
     <div id="Distance" class="tabcontent">
         <h3>Distance</h3>
+
         <div action=routing method= 'post' class="center" >
-            <input type="text" name="username" placeholder="Enter Your Location" required="Username is required" style="margin-left:40px;margin-bottom: 10px">
-            <input type="password" name="password" placeholder="Enter Your Destination" required="Password is required" style="margin-left:40px">
-            <input type="submit" name="submit" value="Direction" style="width: 80%; margin-left: 40px; background: red">
+            <input type="text" name="from" placeholder="Enter Your Location" required="Username is required" style="margin-left:40px;margin-bottom: 10px">
+            <input type="text" name="to" placeholder="Enter Your Destination" required="Password is required" style="margin-left:40px">
+            <input onclick="getDirectionsLocation()" type="submit" name="submit" value="Direction" style="width: 80%; margin-left: 40px; background: red">
         </div>
+        <div id="direction-canvas"></div>
     </div>
 
     <div id="CarPark" class="tabcontent">
@@ -83,19 +100,7 @@
 
 
 
-        //my map
 
-        function initMap() {
-            var uluru = {lat: 6.7970079, lng: 79.9000628};
-            var map = new google.maps.Map(document.getElementById('maps'), {
-                zoom: 4,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
         //map page
         var y = document.getElementById("map-canvas");
         var mapLatitude;
@@ -143,6 +148,8 @@
         var directionsService = new google.maps.DirectionsService();
         var directionsMap;
         var z = document.getElementById("directions-canvas");
+        var searchTo = new google.maps.places.SearchBox(document.getElementById('to'));
+        var searchTo = new google.maps.places.SearchBox(document.getElementById('from'));
         var start;
         var end;
 
@@ -177,8 +184,15 @@
 
         function calcRoute() {
             console.log("calcRoute");
-            start = directionsLatLng;
-            end = "50 Rue Ste-Catherine O Montréal, QC H2X 1Z6";
+            if (!document.getElementById('to')){
+
+                start = directionsDisplay;
+            }else {
+
+                start = document.getElementById('to');
+            }
+
+            end = document.getElementById('from');
             var request = {
                 origin:start,
                 destination:end,
@@ -197,16 +211,11 @@
 
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDyfNoVy0qigSbK-Cp2PifbE_vyOyDGY&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmDyfNoVy0qigSbK-Cp2PifbE_vyOyDGY&libraries=places">
     </script>
 
 @stop
-@section('map')
-    <button onclick="initMap()">press</button>
-    <div id="maps"></div>
 
-
-@stop
 
 
     <!---direction block ---!>

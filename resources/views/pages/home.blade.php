@@ -24,7 +24,6 @@
 
 
     @yield('content')
-    @yield('map')
 
 </body>
 

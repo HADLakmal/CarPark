@@ -8,8 +8,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use phpseclib\Crypt\Random;
 
 class DBController extends Controller
 {
@@ -92,17 +95,26 @@ class DBController extends Controller
 
     public function register(Request $request)
     {
-        $companyname= $request['companyname'];
+        $companyname= $request['comapanyname'];
         $loaction  = $request['location'];
         $address=$request['address'];
         $conumber=$request['conumber'];
         $Mobile=$request['mobnumber'];
+        $email = $request['email'];
+        $pass = str_random(15);
+        str_replace(",","#",$loaction);
+
 
 
         try{
-            DB::insert('insert into tempregister (companyname,longitude,latitude, address ,conumber, mobnumber) values (?, ?, ?, ?, ? ,?)',[$companyname,$loaction,$loaction,$address,$conumber,$Mobile]);
+            $user = new User()
+            DB::insert('insert into register (companyname,location, address ,conumber, mobnumber,email) values ( ?, ?, ?, ? ,?,?)',[$companyname,$loaction,$address,$conumber,$Mobile,$email]);
 
-            return redirect()->route('pages.login');
+            DB::insert('insert into registerlogin (username,password) values (?, ?)',[$companyname,$pass]);
+
+            Mail::send('mailers',array())
+
+            return view('pages.login');
         }
         catch(\Illuminate\Database\QueryException $ex)
         {
